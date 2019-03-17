@@ -54,7 +54,19 @@ modeH = ddH.viewIControlMode2()  # make a operation mode controller object we ca
 axesH = posH.getAxes()  # retrieve number of joints
 modeH.setControlModes(yarp.IVector(axesH, yarp.encode('pos'))) # note: stops the robot
 
+#-- Text-to-speech (TTS)
+tts = yarp.RpcClient()
+tts.open('/demo/espeak/rpc:c')
+yarp.Network.connect('/demo/espeak/rpc:c','/espeak/rpc:s');
+
 #-- Program
+cmd = yarp.Bottle()
+res = yarp.Bottle()
+cmd.addString('say')
+cmd.addString('hello, my name is teo')
+tts.write(cmd,res)
+print('res',res.toString())
+
 posLA.positionMove(0,-35)
 while not posLA.checkMotionDone():
     sleep(0.1)

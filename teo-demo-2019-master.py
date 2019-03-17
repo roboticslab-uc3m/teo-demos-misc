@@ -26,7 +26,7 @@ posLA = ddLA.viewIPositionControl()  # make a position controller object we call
 modeLA = ddLA.viewIControlMode2()  # make a operation mode controller object we call 'mode'
 
 axesLA = posLA.getAxes()  # retrieve number of joints
-modeLA.setControlModes(yarp.IVector(axesLA, yarp.encode('pos'))) # note: stops the robot
+#modeLA.setControlModes(yarp.IVector(axesLA, yarp.encode('pos'))) # note: stops the robot
 
 #-- Right Arm (RA)
 optionsRA = yarp.Property()  # create an instance of Property, a nice YARP class for storing name-value (key-value) pairs
@@ -39,7 +39,7 @@ posRA = ddRA.viewIPositionControl()  # make a position controller object we call
 modeRA = ddRA.viewIControlMode2()  # make a operation mode controller object we call 'mode'
 
 axesRA = posRA.getAxes()  # retrieve number of joints
-modeRA.setControlModes(yarp.IVector(axesRA, yarp.encode('pos'))) # note: stops the robot
+#modeRA.setControlModes(yarp.IVector(axesRA, yarp.encode('pos'))) # note: stops the robot
 
 #-- HEAD (H)
 optionsH = yarp.Property()  # create an instance of Property, a nice YARP class for storing name-value (key-value) pairs
@@ -52,7 +52,7 @@ posH = ddH.viewIPositionControl()  # make a position controller object we call '
 modeH = ddH.viewIControlMode2()  # make a operation mode controller object we call 'mode'
 
 axesH = posH.getAxes()  # retrieve number of joints
-modeH.setControlModes(yarp.IVector(axesH, yarp.encode('pos'))) # note: stops the robot
+#modeH.setControlModes(yarp.IVector(axesH, yarp.encode('pos'))) # note: stops the robot
 
 #-- Text-to-speech (TTS)
 tts = yarp.RpcClient()

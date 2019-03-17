@@ -21,21 +21,20 @@ options.put('local','/demo'+robot+'/leftArm')  # we add info on how we will call
 dd = yarp.PolyDriver(options)  # create a YARP multi-use driver with the given options
 
 pos = dd.viewIPositionControl()  # make a position controller object we call 'pos'
-vel = dd.viewIVelocityControl()  # make a velocity controller object we call 'vel'
-enc = dd.viewIEncoders()  # make an encoder controller object we call 'enc'
 mode = dd.viewIControlMode2()  # make a operation mode controller object we call 'mode'
-ll = dd.viewIControlLimits()  # make a limits controller object we call 'll'
 
 axes = enc.getAxes()  # retrieve number of joints
 
 # use the object to set the device to position mode (as opposed to velocity mode)(note: stops the robot)
 mode.setControlModes(yarp.IVector(axes, yarp.encode('pos')))
 
-print 'positionMove(1,-35) -> moves motor 1 (start count at motor 0) to -35 degrees'
 pos.positionMove(0,-35)
+while not pos.checkMotionDone():
+    sleep(0.1)
 
-print 'sleep(5)'
-sleep(5)
+pos.positionMove(0,0)
+while not pos.checkMotionDone():
+    sleep(0.1)
 
 #min = yarp.DVector(1)
 

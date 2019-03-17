@@ -4,4 +4,4 @@
 # CopyPolicy: released under the terms of the LGPLv2.1
 # URL: https://github.com/roboticslab-uc3m/
 
-
+import yarp

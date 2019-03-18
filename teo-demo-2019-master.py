@@ -55,18 +55,37 @@ def say(sayStr):
     cmd.addString(sayStr)
     tts.write(cmd,res)
 
+# Single joint would be: posLA.positionMove(0,-35)
+
 v = yarp.DVector(axesLA,0.0)
 v[0]=-35
 v[3]=-35
-posLA.positionMove(v) # Single joint would be: posLA.positionMove(0,-35)
+posLA.positionMove(v)
+
 say('hello, my name is teo')
-sleep(0.1)
+
 while not posLA.checkMotionDone():
     sleep(0.1)
 
-v = yarp.DVector(axesLA,0.0)
-posLA.positionMove(v) # Single joint would be: posLA.positionMove(0,-35)
 say('this is my left arm')
+sleep(1)
+
+v = yarp.DVector(axesLA,0.0)
+posLA.positionMove(v)
+v = yarp.DVector(axesRA,0.0)
+v[0]=35
+v[3]=35
+posRA.positionMove(v)
 while not posLA.checkMotionDone():
+    sleep(0.1)
+while not posRA.checkMotionDone():
+    sleep(0.1)
+
+say('this is my right arm')
+sleep(1)
+
+v = yarp.DVector(axesRA,0.0)
+posRA.positionMove(v)
+while not posRA.checkMotionDone():
     sleep(0.1)
 

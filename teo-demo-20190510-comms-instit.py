@@ -174,6 +174,19 @@ def hola():
 
 def mi():
     print('mi: begin')
+    v = yarp.DVector(axesRA,0.0)
+    v[0]=-65
+    v[3]=-65
+    posRA.positionMove(v)
+    while not posRA.checkMotionDone():
+        sleep(0.1)
+
+    v[2]=45
+    v[3]=-85
+    posRA.positionMove(v)
+    while not posRA.checkMotionDone():
+        sleep(0.1)
+
     print('mi: end')
 
 ### SEQUENCE: HOLA
@@ -184,11 +197,13 @@ safe()
 zero()
 
 ### SEQUENCE: MI NOMBRE ES
-zero()
-safe()
-mi()
-safe()
-zero()
+#zero()
+#safe()
+#mi()
+#nombre()
+#es()
+#safe()
+#zero()
 
 quit()
 

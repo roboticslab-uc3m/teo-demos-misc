@@ -128,6 +128,51 @@ def pause():
 #-- Program
 # Single joint would be: posLA.positionMove(0,-35)
 
+# Hello
+v = yarp.DVector(axesRA,0.0)
+v[0]=-35
+v[3]=-35
+posRA.positionMove(v)
+while not posRA.checkMotionDone():
+    sleep(0.1)
+
+v = yarp.DVector(axesRA,0.0)
+v[0]=-65
+v[3]=-85
+v[4]=85
+posRA.positionMove(v)
+while not posRA.checkMotionDone():
+    sleep(0.1)
+
+v[2]=10
+posRA.positionMove(v)
+while not posRA.checkMotionDone():
+    sleep(0.1)
+
+v[2]=-10
+posRA.positionMove(v)
+while not posRA.checkMotionDone():
+    sleep(0.1)
+
+v[2]=0
+posRA.positionMove(v)
+while not posRA.checkMotionDone():
+    sleep(0.1)
+
+v = yarp.DVector(axesRA,0.0)
+v[0]=-35
+v[3]=-35
+posRA.positionMove(v)
+while not posRA.checkMotionDone():
+    sleep(0.1)
+
+v = yarp.DVector(axesRA,0.0)
+posRA.positionMove(v)
+while not posRA.checkMotionDone():
+    sleep(0.1)
+
+quit()
+
 ttsSpeed(160)
 
 ttsLang('mb-es1')

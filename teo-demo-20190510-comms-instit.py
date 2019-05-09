@@ -146,8 +146,8 @@ def safe():
         sleep(0.1)
     print('safe: end')
 
-def hello():
-    print('hello: begin')
+def hola():
+    print('hola: begin')
     v = yarp.DVector(axesRA,0.0)
     v[0]=-65
     v[3]=-85
@@ -170,12 +170,23 @@ def hello():
     posRA.positionMove(v)
     while not posRA.checkMotionDone():
         sleep(0.1)
-    print('hello: end')
+    print('hola: end')
 
-### INIT
+def mi():
+    print('mi: begin')
+    print('mi: end')
+
+### SEQUENCE: HOLA
 zero()
 safe()
-hello()
+hola()
+safe()
+zero()
+
+### SEQUENCE: MI NOMBRE ES
+zero()
+safe()
+mi()
 safe()
 zero()
 

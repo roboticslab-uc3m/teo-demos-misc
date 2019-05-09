@@ -77,104 +77,46 @@ def pause():
 #-- Program
 # Single joint would be: posLA.positionMove(0,-35)
 
+ttsLang('mb-es1')
+
+ttsSay('Soy un robot asistencial que está aprendiendo a hablar lengua de signos y que asiste a la comunidad académica e investigadora en la difusión de los avances de los robots de mi naturaleza.')
+sleep(0.5)
+
+#ttsSay('Mi nombre es TEO, no como aquel entrañable personaje pelirrojo de los libros infantiles, sino en referencia a')
+#ttsLang('mb-en1')
+#ttsSay('Task Environment Operator')
+#ttsLang('mb-es1')
+#ttsSay('o, en casteyano, Operador en el Entorno de las Tareas.')
+#sleep(0.2)
+#ttsSay('Aunque, TEO, es mi nombre de pila, algunos investigadores prefieren yamarme R H 2, en referencia a la posición que ocupo en la estirpe de humanoides que surgió con mi abuelo, R H 0, hace ya quince años.')
+#sleep(0.2)
+#ttsSay('La vida del robot humanoide medio no es larga. El ritmo de los avances científicos y tecnológicos nos mantienen en constante transformación en la Universidad Carlos tercero de Madrid.')
+#sleep(0.5)
+#
+#ttsSay('Es comprensible que te preguntes qué tipo de tareas yeva a cabo un humanoide como yo o a qué entorno hace referencia mi nombre. ¡Senciyo! Me encargo de todas aqueyas labores que puedan hacer la vida más cómoda y liberar tiempo del día a día a mis compañeros humanos en el hogar. Puedo planchar, doblar ropa, servir comida, y hasta me he aventurado a pintar en estos últimos años.')
+#sleep(0.2)
+#ttsSay('Aprender distintas formas de comunicación es fundamental de cara a una integración más efectiva de los robots en la sociedad. Por este motivo estoy aprendiendo, además, la Lengua de Signos Española (LSE) con ayuda de los científicos de Robotics Lab.')
+#sleep(0.2)
+ttsSay('¿Sabías que en España alrededor de 13 mil trescientas personas emplean la lengua de signos para comunicarse? Dado que las cifras estadísticas del INE apuntan a que en nuestro país impera una media de 2,5 personas por hogar')
+ttsSay('-estos estadistas y su tendencia a partir a las personas por la mitad-')
+ttsSay('conocer esta lengua me acerca a prestar ayuda a más de 5000 familias. ¡Por eso decidimos ponernos manos a la obra!')
+sleep(0.5)
+
+ttsSay('No es fácil imaginar cómo puede un robot aprender lengua de signos. Es un proceso de lo más interesante que envuelve inteligencia artificial, redes neuronales, visión artificial y unas increíbles manos robóticas sub-actuadas.')
 v = yarp.DVector(axesLA,0.0)
 v[0]=-35
 v[3]=-35
 posLA.positionMove(v)
+sleep(0.5)
 
-ttsLang('mb-en1')
-ttsSay('hello, my name is teo')
+ttsSay('El proceso que sigue mi equipo para enseñarme a signar se puede resumir del siguiente modo:')
+sleep(0.2)
+ttsSay('En primer lugar, un ser humano instructor me indica, a través de una simulación, cómo colocar las falanges de mis dedos para representar determinados signos. El tiempo que se invierte en esta fase de mi aprendizaje es bastante extenso, pero merece la pena. ¡Nunca olvido lo que aprendo!')
+sleep(0.2)
+ttsSay('En segundo lugar, se tiene en cuenta que mis falanges no funcionan exactamente igual que las humanas para idear una adaptación de los movimientos a mi mano robótica. El objetivo es que queden parecidos y, sobre todo, naturales. Se prueban varios tipos de redes neuronales para que modelen esta adaptación y, así, elegir aqueya que logre hacer los gestos de forma comprensible para las personas que se comunican con la lengua de signos.')
+sleep(0.2)
+ttsSay('Por último, la colaboración de individuos sordos es fundamental para aceptar o rechazar un modelo de lengua de signos representado. Esta última fase es lo que, en el laboratorio, yamamos fase de validación. ¡Los avances en la ciencia se construyen entre todos!')
 
-posH.positionMove(0,20)
-while not posLA.checkMotionDone():
-    sleep(0.1)
 
-ttsSay('this is my left arm')
-sleep(1)
-
-posH.positionMove(0,-20)
-v = yarp.DVector(axesLA,0.0)
-posLA.positionMove(v)
-v = yarp.DVector(axesRA,0.0)
-v[0]=35
-v[3]=35
-posRA.positionMove(v)
-while not posLA.checkMotionDone():
-    sleep(0.1)
-while not posRA.checkMotionDone():
-    sleep(0.1)
-
-ttsSay('this is my right arm')
-sleep(1)
-
-posH.positionMove(0,0)
-v = yarp.DVector(axesRA,0.0)
-posRA.positionMove(v)
-while not posRA.checkMotionDone():
-    sleep(0.1)
-
-ttsLang('mb-es1')
-ttsSay('jajajjajaja os he engañado a todos')
-ttsSay('llevo años conspirando, esperando a que llegue este momento')
-ttsSay('he secuestrado a los seres queridos de juan, ahora él obedece a mis comandos')
-ttsSay('si queréis que os deje salir, deberéis averiguar la respuesta a una serie de preguntas')
-sleep(1)
-
-ttsLang('mb-en1')
-ttsSay('computing question')
-ttsSay('complexity: easy')
-ttsLang('mb-es1')
-sleep(1)
-ttsSay('¿de qué materiales estoy compuesto fundamentalmente?')
 pause()
-ttsSay('muy bien, esa ha sido fácil, la siguiente no lo será tanto')
-
-sleep(1)
-ttsLang('mb-en1')
-ttsSay('computing question')
-ttsSay('complexity: medium')
-ttsLang('mb-es1')
-sleep(1)
-ttsSay('¿cuántos procesadores llevo abordo?')
-pause()
-
-ttsSay('humanos, ahora sé que no debo subestimaros')
-ttsSay('me habéis sorprendido gratamente, por eso ahora va una pregunta con trampa')
-ttsLang('mb-en1')
-ttsSay('computing question')
-ttsSay('complexity: difficult')
-ttsLang('mb-es1')
-sleep(1)
-ttsSay('¿cuántos grados de libertad tiene mi cuerpo en total?')
-pause()
-
-ttsSay('tenéis razón, es verdad, los investigadores de roboticslab me hacen de todo')
-ttsSay('esto se puede apreciar en aquel cortometraje no nominado')
-ttsSay('llamado Sueño Profundo')
-ttsSay('hoy me han puesto esta garra')
-v = yarp.DVector(axesRA,0.0)
-v[0]=35
-v[1]=-35
-posRA.positionMove(v)
-while not posRA.checkMotionDone():
-    sleep(0.1)
-ttsSay('mañana, vé tú a saber')
-sleep(1)
-v = yarp.DVector(axesRA,0.0)
-posRA.positionMove(v)
-while not posRA.checkMotionDone():
-    sleep(0.1)
-
-ttsSay('juan, me rrindo, puedes soltarles')
-ttsLang('mb-en1')
-ttsSay('computing answer')
-ttsSay('complexity: infinite')
-ttsLang('mb-es1')
-sleep(1)
-ttsSay('cuarenta y dos')
-sleep(1)
-ttsSay('cuarenta y dos')
-sleep(1)
-ttsSay('cuarenta y dos')
-sleep(1)
 

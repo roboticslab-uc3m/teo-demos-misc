@@ -12,7 +12,7 @@ from time import sleep
 import yarp  # imports YARP
 yarp.Network.init()  # connect to YARP network
 if yarp.Network.checkNetwork() != True:  # let's see if there was actually a reachable YARP network
-    print '[error] Please try running yarp server'  # tell the user to start one with 'yarp server' if there isn't any
+    print('[error] Please try running yarp server')  # tell the user to start one with 'yarp server' if there isn't any
     quit()
 
 #-- Left Arm (LA)
@@ -42,14 +42,50 @@ ddH = yarp.PolyDriver(optionsH)  # create a YARP multi-use driver with the given
 posH = ddH.viewIPositionControl()  # make a position controller object we call 'pos'
 axesH = posH.getAxes()  # retrieve number of joints
 
-#-- Right Th (RT)
-optionsRA = yarp.Property()  # create an instance of Property, a nice YARP class for storing name-value (key-value) pairs
-optionsRA.put('device','remote_controlboard')  # we add a name-value pair that indicates the YARP device
-optionsRA.put('remote',robot+'/rightArm')  # we add info on to whom we will connect
-optionsRA.put('local','/demo'+robot+'/rightArm')  # we add info on how we will call ourselves on the YARP network
-ddRA = yarp.PolyDriver(optionsRA)  # create a YARP multi-use driver with the given options
-posRA = ddRA.viewIPositionControl()  # make a position controller object we call 'pos'
-axesRA = posRA.getAxes()  # retrieve number of joints
+#-- Right Thumb (RT)
+optionsRT = yarp.Property()  # create an instance of Property, a nice YARP class for storing name-value (key-value) pairs
+optionsRT.put('device','remote_controlboard')  # we add a name-value pair that indicates the YARP device
+optionsRT.put('remote',robot+'/rightThumb')  # we add info on to whom we will connect
+optionsRT.put('local','/demo'+robot+'/rightThumb')  # we add info on how we will call ourselves on the YARP network
+ddRT = yarp.PolyDriver(optionsRT)  # create a YARP multi-use driver with the given options
+posRT = ddRT.viewIPositionControl()  # make a position controller object we call 'pos'
+axesRT = posRT.getAxes()  # retrieve number of joints
+
+#-- Right Index (RI)
+optionsRI = yarp.Property()  # create an instance of Property, a nice YARP class for storing name-value (key-value) pairs
+optionsRI.put('device','remote_controlboard')  # we add a name-value pair that indicates the YARP device
+optionsRI.put('remote',robot+'/rightIndex')  # we add info on to whom we will connect
+optionsRI.put('local','/demo'+robot+'/rightIndex')  # we add info on how we will call ourselves on the YARP network
+ddRI = yarp.PolyDriver(optionsRI)  # create a YARP multi-use driver with the given options
+posRI = ddRI.viewIPositionControl()  # make a position controller object we call 'pos'
+axesRI = posRI.getAxes()  # retrieve number of joints
+
+#-- Right Middle (RM)
+optionsRM = yarp.Property()  # create an instance of Property, a nice YARP class for storing name-value (key-value) pairs
+optionsRM.put('device','remote_controlboard')  # we add a name-value pair that indicates the YARP device
+optionsRM.put('remote',robot+'/rightMiddle')  # we add info on to whom we will connect
+optionsRM.put('local','/demo'+robot+'/rightMiddle')  # we add info on how we will call ourselves on the YARP network
+ddRM = yarp.PolyDriver(optionsRM)  # create a YARP multi-use driver with the given options
+posRM = ddRM.viewIPositionControl()  # make a position controller object we call 'pos'
+axesRM = posRM.getAxes()  # retrieve number of joints
+
+#-- Right Ring (RR)
+optionsRR = yarp.Property()  # create an instance of Property, a nice YARP class for storing name-value (key-value) pairs
+optionsRR.put('device','remote_controlboard')  # we add a name-value pair that indicates the YARP device
+optionsRR.put('remote',robot+'/rightRing')  # we add info on to whom we will connect
+optionsRR.put('local','/demo'+robot+'/rightRing')  # we add info on how we will call ourselves on the YARP network
+ddRR = yarp.PolyDriver(optionsRR)  # create a YARP multi-use driver with the given options
+posRR = ddRR.viewIPositionControl()  # make a position controller object we call 'pos'
+axesRR = posRR.getAxes()  # retrieve number of joints
+
+#-- Right Pinky (RP)
+optionsRP = yarp.Property()  # create an instance of Property, a nice YARP class for storing name-value (key-value) pairs
+optionsRP.put('device','remote_controlboard')  # we add a name-value pair that indicates the YARP device
+optionsRP.put('remote',robot+'/rightPinky')  # we add info on to whom we will connect
+optionsRP.put('local','/demo'+robot+'/rightPinky')  # we add info on how we will call ourselves on the YARP network
+ddRP = yarp.PolyDriver(optionsRP)  # create a YARP multi-use driver with the given options
+posRP = ddRP.viewIPositionControl()  # make a position controller object we call 'pos'
+axesRP = posRP.getAxes()  # retrieve number of joints
 
 #-- Text-to-speech (TTS)
 tts = yarp.RpcClient()
@@ -96,13 +132,13 @@ ttsSpeed(160)
 
 ttsLang('mb-es1')
 
-#ttsSay('¡Hola! Soy un robot asistencial que está aprendiendo a hablar lengua de signos y que asiste a la comunidad académica e investigadora en la difusión de los avances de los robots de mi naturaleza.')
-#sleep(0.5)
+ttsSay('¡Hola! Soy un robot asistencial que está aprendiendo a hablar lengua de signos y que asiste a la comunidad académica e investigadora en la difusión de los avances de los robots de mi naturaleza.')
+sleep(0.5)
 
-#ttsSay('Mi nombre es TEO, en referencia a Operador en el Entorno de las Tareas. Me encargo de todas aqueyas labores que puedan hacer la vida más cómoda y liberar tiempo del día a día a mis compañeros humanos en el hogar. Puedo planchar, doblar ropa, servir comida y hasta me he aventurado a pintar en estos últimos años.')
-#sleep(0.5)
+ttsSay('Mi nombre es TEO, en referencia a Operador en el Entorno de las Tareas. Me encargo de todas aqueyas labores que puedan hacer la vida más cómoda y liberar tiempo del día a día a mis compañeros humanos en el hogar. Puedo planchar, doblar ropa, servir comida y hasta me he aventurado a pintar en estos últimos años.')
+sleep(0.5)
 
-#ttsSay('Aprender distintas formas de comunicación es fundamental de cara a una integración más efectiva de los robots en la sociedad. Por este motivo estoy aprendiendo, además, la Lengua de Signos Española con ayuda del equipo de Robotics Lab.')
+ttsSay('Aprender distintas formas de comunicación es fundamental de cara a una integración más efectiva de los robots en la sociedad. Por este motivo estoy aprendiendo, además, la Lengua de Signos Española con ayuda del equipo de Robotics Lab.')
 sleep(0.2)
 ttsSay('¿Sabías que en España alrededor de 13 mil trescientas personas emplean la lengua de signos para comunicarse?')
 ttsSay('¡Por eso decidimos ponernos manos a la obra!')

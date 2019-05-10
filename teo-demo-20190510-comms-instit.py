@@ -132,6 +132,12 @@ def zero():
     print('zero: begin')
     v = yarp.DVector(axesRA,0.0)
     posRA.positionMove(v)
+
+    v = yarp.DVector(axesLA,0.0)
+    posLA.positionMove(v)
+
+    while not posLA.checkMotionDone():
+        sleep(0.1)
     while not posRA.checkMotionDone():
         sleep(0.1)
     print('zero: end')
@@ -142,6 +148,16 @@ def safe():
     v[0]=-35
     v[3]=-35
     posRA.positionMove(v)
+
+    v = yarp.DVector(axesLA,0.0)
+    v[0]=-35
+    v[3]=-35
+    posLA.positionMove(v)
+    while not posLA.checkMotionDone():
+        sleep(0.1)
+
+    while not posLA.checkMotionDone():
+        sleep(0.1)
     while not posRA.checkMotionDone():
         sleep(0.1)
     print('safe: end')
@@ -172,36 +188,64 @@ def hola():
         sleep(0.1)
     print('hola: end')
 
-def mi():
+def miNombre():
     print('mi: begin')
+
+    # pechoAprox
     v = yarp.DVector(axesRA,0.0)
-    v[0]=-65
+    v[0]=-55
     v[3]=-65
     posRA.positionMove(v)
     while not posRA.checkMotionDone():
         sleep(0.1)
 
+    # pecho
+    v[1]=15
     v[2]=45
     v[3]=-85
     posRA.positionMove(v)
     while not posRA.checkMotionDone():
         sleep(0.1)
 
+    # pechoAprox
+    v[2]=15
+    posRA.positionMove(v)
+    while not posRA.checkMotionDone():
+        sleep(0.1)
+
+    # begin nombre
+    v = yarp.DVector(axesRA,0.0)
+    v[0]=-55
+    v[1]=7.5
+    v[2]=55 # 45
+    v[3]=-55 # codo (-45 for flat)
+    v[4]=-45
+    posRA.positionMove(v)
+
+    v = yarp.DVector(axesLA,0.0)
+    v[0]=-55
+    v[1]=-7.5
+    v[2]=-55 # -45
+    v[3]=-35 # codo (-45 for flat)
+    v[4]=45
+    posLA.positionMove(v)
+
+    while not posRA.checkMotionDone():
+        sleep(0.1)
+
     print('mi: end')
 
 ### SEQUENCE: HOLA
-zero()
-safe()
-hola()
-safe()
-zero()
+#zero()
+#safe()
+#hola()
+#safe()
+#zero()
 
 ### SEQUENCE: MI NOMBRE ES
 #zero()
 #safe()
-#mi()
-#nombre()
-#es()
+miNombre()
 #safe()
 #zero()
 

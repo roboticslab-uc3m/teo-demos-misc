@@ -245,11 +245,11 @@ def miNombre():
 ### SEQUENCE: MI NOMBRE ES
 #zero()
 #safe()
-miNombre()
+#miNombre()
 #safe()
 #zero()
 
-quit()
+#quit()
 
 ttsSpeed(160)
 

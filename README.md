@@ -1,3 +1,3 @@
-# teo-demo-2019-master
+# teo-demos-misc
 
-teo-demo-2019-master
+teo-demo-misc

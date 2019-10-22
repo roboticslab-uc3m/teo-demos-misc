@@ -27,7 +27,7 @@ letterEA = [-75.4, 12.4, 9.6, -83.5, 86.2, 2.3]
 letterEH = [0.0, 0.0, 18.0, 18.0, 18.0, 18.0] # [0, 0, 20, 20, 20, 20]
 
 letterOA = [-73.4, 10.5, 13.1, -83.5, 25.7, -0.9]
-letterOH = [87.3, 1.9, 11.6, 5.0, 2.4, 0.0]
+letterOH = [47.3, 1.9, 11.6, 5.0, 2.4, 0.0] # [87.3, 1.9, 11.6, 5.0, 2.4, 0.0]
 
 def wait(*arg):
     for part in arg:
@@ -48,7 +48,7 @@ def moveTo(part, target, duration = 0.0):
         maxSpeed = 0.0
 
         for j in range(6):
-            spds[j] = (target[j] - curr[j]) / duration
+            spds[j] = abs(target[j] - curr[j]) / duration
             maxSpeed = max(maxSpeed, spds[j])
         
         print('(%s) new refSpeeds: %s (max: %f)' % (part['name'], ' '.join(map(str, spds)), maxSpeed))

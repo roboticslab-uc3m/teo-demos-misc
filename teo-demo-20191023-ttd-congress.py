@@ -56,6 +56,12 @@ def moveTo(part, target, duration = 0.0):
     
     part['pos'].positionMove(yarp.DVector(target))
 
+def say(text):
+    global tts
+    cmd = yarp.Bottle('say "%s"' % text)
+    res = yarp.Bottle()
+    tts.write(cmd, res)
+
 if len(sys.argv) < 2:
     print('error: missing prefix parameter')
     quit()
@@ -76,6 +82,10 @@ yarp.Network.init()
 if not yarp.Network.checkNetwork():
     print('error: please try running yarp server')
     quit()
+
+tts = yarp.RpcClient()
+tts.open(demoPrefix + '/tts/rpc:c')
+yarp.Network.connect(tts.getName(), '/tts/rpc:s')
 
 options = yarp.Property()
 options.put('device', 'remote_controlboard')
@@ -132,6 +142,7 @@ wait(LEFT_ARM, RIGHT_ARM)
 print('*** Hi ***')
 moveTo(RIGHT_ARM, helloRA1, 4)
 wait(RIGHT_ARM)
+say('hola')
 moveTo(RIGHT_ARM, helloRA2, 0.75)
 wait(RIGHT_ARM)
 
@@ -142,6 +153,7 @@ print('*** My ***')
 moveTo(LEFT_ARM, myLA, 2)
 moveTo(RIGHT_ARM, myRA, 2)
 wait(LEFT_ARM, RIGHT_ARM)
+say('mi')
 
 yarp.delay(0.5)
 
@@ -152,6 +164,7 @@ moveTo(RIGHT_ARM, nameRA1, 1.25)
 moveTo(LEFT_HAND, nameLH)
 moveTo(RIGHT_HAND, nameRH)
 wait(RIGHT_ARM)
+say('nombre es')
 moveTo(RIGHT_ARM, nameRA2, 1.75)
 wait(LEFT_ARM, RIGHT_ARM)
 
@@ -164,6 +177,7 @@ moveTo(RIGHT_ARM, letterTA, 2.5)
 moveTo(LEFT_HAND, homeLH)
 moveTo(RIGHT_HAND, letterTH)
 wait(LEFT_ARM, RIGHT_ARM)
+say('T')
 
 yarp.delay(0.5)
 
@@ -172,6 +186,7 @@ print('*** E ***')
 moveTo(RIGHT_ARM, letterEA, 2.5)
 moveTo(RIGHT_HAND, letterEH)
 wait(RIGHT_ARM)
+say('E')
 
 yarp.delay(0.5)
 
@@ -180,7 +195,10 @@ print('*** O ***')
 moveTo(RIGHT_ARM, letterOA, 2.5)
 moveTo(RIGHT_HAND, letterOH)
 wait(RIGHT_ARM)
+say('O')
 
+yarp.delay(0.5)
+say('TEO')
 yarp.delay(0.5)
 
 # home
@@ -199,5 +217,7 @@ rightArmDevice.close()
 if isReal:
     leftHandDevice.close()
     rightHandDevice.close()
+
+tts.close()
 
 yarp.Network.fini()

@@ -13,9 +13,9 @@ class ButtonResponder(yarp.PortReader):
         if not connection.isValid() or not b.read(connection) or b.size() != 2:
             return False
 
-        if b.get(0).asBool():
+        if b.get(0).asFloat64() == 1.0:
             self.ipwm.setRefDutyCycle(0, 100.0)
-        elif b.get(1).asBool():
+        elif b.get(1).asFloat64() == 1.0:
             self.ipwm.setRefDutyCycle(0, -100.0)
 
         return True

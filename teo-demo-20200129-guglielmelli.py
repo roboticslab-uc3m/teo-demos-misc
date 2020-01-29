@@ -14,9 +14,9 @@ class ButtonResponder(yarp.PortReader):
             return False
 
         if b.get(0).asBool():
-            ipwm.setRefDutyCycle(0, 100.0)
+            self.ipwm.setRefDutyCycle(0, 100.0)
         elif b.get(1).asBool():
-            ipwm.setRefDutyCycle(0, -100.0)
+            self.ipwm.setRefDutyCycle(0, -100.0)
 
         return True
 

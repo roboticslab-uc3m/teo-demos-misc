@@ -1,6 +1,6 @@
 # teo-demos-misc
 
-## simpleElbowV30.csv
+## 20200207-simpleElbowV30.csv
 BiRRT trajectory planning in joint space with TEO, planned in OpenRAVE without obstacle.
 - Columns: 0 timestamp + 6 (right) arm positions + 6 (right) arm velocities
 - Period: 0.01 s

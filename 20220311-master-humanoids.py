@@ -69,7 +69,7 @@ if not yarp.Network.connect(ttsRPC.getName(), '/teo/tts/rpc:s'):
     print('Unable to connect to remote TTS server port')
     raise SystemExit
 
-tts = speech.TextToSpeechIDL()
+tts = speech.SpeechSynthesis()
 tts.yarp().attachAsClient(ttsRPC)
 
 #-- Utilities

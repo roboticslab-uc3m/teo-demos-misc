@@ -12,7 +12,7 @@ ARG KINEMATICS_DYNAMICS_COMMIT="f4bc01f1325efc64317be58e4eeb3fc44f27f496"
 
 RUN apt update \
     && apt install -y --no-install-recommends \
-        wget unzip swig \
+        wget swig \
         qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev qml-module-qtquick2 qml-module-qtquick-window2 qml-module-qtmultimedia \
         qml-module-qtquick-dialogs qml-module-qtquick-controls qml-module-qt-labs-folderlistmodel qml-module-qt-labs-settings \
         libedit-dev \
@@ -30,35 +30,35 @@ RUN apt update \
         -DYARP_COMPILE_BINDINGS=ON -DCREATE_PYTHON=ON -DCMAKE_INSTALL_PYTHON3DIR=/usr/local/lib/python3.10/dist-packages \
     && make -j$(nproc) && make install && cd ../.. && rm v$YARP.tar.gz \
     \
-    && wget -q https://github.com/roboticslab-uc3m/openrave-yarp-plugins/archive/$OPENRAVE_YARP_PLUGINS_COMMIT.zip \
-    && unzip $OPENRAVE_YARP_PLUGINS_COMMIT.zip \
+    && wget -q https://github.com/roboticslab-uc3m/openrave-yarp-plugins/archive/$OPENRAVE_YARP_PLUGINS_COMMIT.tar.gz \
+    && tar -xzf $OPENRAVE_YARP_PLUGINS_COMMIT.tar.gz \
     && mkdir -p openrave-yarp-plugins-$OPENRAVE_YARP_PLUGINS_COMMIT/build && cd openrave-yarp-plugins-$OPENRAVE_YARP_PLUGINS_COMMIT/build && cmake .. \
-    && make -j$(nproc) && make install && cd ../.. && rm $OPENRAVE_YARP_PLUGINS_COMMIT.zip \
+    && make -j$(nproc) && make install && cd ../.. && rm $OPENRAVE_YARP_PLUGINS_COMMIT.tar.gz \
     \
     && wget -q https://github.com/roboticslab-uc3m/teo-openrave-models/archive/refs/tags/v$TEO_OPENRAVE_MODELS.tar.gz \
     && tar -xzf v$TEO_OPENRAVE_MODELS.tar.gz \
     && mkdir -p teo-openrave-models-$TEO_OPENRAVE_MODELS/build && cd teo-openrave-models-$TEO_OPENRAVE_MODELS/build && cmake .. \
     && make -j$(nproc) && make install && cd ../.. && rm v$TEO_OPENRAVE_MODELS.tar.gz \
     \
-    && wget -q https://github.com/roboticslab-uc3m/teo-configuration-files/archive/$TEO_CONFIGURATION_FILES_COMMIT.zip \
-    && unzip $TEO_CONFIGURATION_FILES_COMMIT.zip \
+    && wget -q https://github.com/roboticslab-uc3m/teo-configuration-files/archive/$TEO_CONFIGURATION_FILES_COMMIT.tar.gz \
+    && tar -xzf $TEO_CONFIGURATION_FILES_COMMIT.tar.gz \
     && mkdir -p teo-configuration-files-$TEO_CONFIGURATION_FILES_COMMIT/build && cd teo-configuration-files-$TEO_CONFIGURATION_FILES_COMMIT/build && cmake .. \
-    && make -j$(nproc) && make install && cd ../.. && rm $TEO_CONFIGURATION_FILES_COMMIT.zip \
+    && make -j$(nproc) && make install && cd ../.. && rm $TEO_CONFIGURATION_FILES_COMMIT.tar.gz \
     \
-    && wget -q https://github.com/roboticslab-uc3m/tools/archive/$TOOLS_COMMIT.zip \
-    && unzip $TOOLS_COMMIT.zip \
+    && wget -q https://github.com/roboticslab-uc3m/tools/archive/$TOOLS_COMMIT.tar.gz \
+    && tar -xzf $TOOLS_COMMIT.tar.gz \
     && mkdir -p tools-$TOOLS_COMMIT/build && cd tools-$TOOLS_COMMIT/build && cmake .. \
-    && make -j$(nproc) && make install && cd ../.. && rm $TOOLS_COMMIT.zip \
+    && make -j$(nproc) && make install && cd ../.. && rm $TOOLS_COMMIT.tar.gz \
     \
     && wget -q https://github.com/orocos/orocos_kinematics_dynamics/archive/refs/tags/v$OROCOS_KINEMATICS_DYNAMICS.tar.gz \
     && tar -xzf v$OROCOS_KINEMATICS_DYNAMICS.tar.gz \
     && mkdir -p orocos_kinematics_dynamics-$OROCOS_KINEMATICS_DYNAMICS/orocos_kdl/build && cd orocos_kinematics_dynamics-$OROCOS_KINEMATICS_DYNAMICS/orocos_kdl/build && cmake .. \
     && make -j$(nproc) && make install && cd ../../.. && rm v$OROCOS_KINEMATICS_DYNAMICS.tar.gz \
     \
-    && wget -q https://github.com/roboticslab-uc3m/kinematics-dynamics/archive/$KINEMATICS_DYNAMICS_COMMIT.zip \
-    && unzip $KINEMATICS_DYNAMICS_COMMIT.zip \
+    && wget -q https://github.com/roboticslab-uc3m/kinematics-dynamics/archive/$KINEMATICS_DYNAMICS_COMMIT.tar.gz \
+    && tar -xzf $KINEMATICS_DYNAMICS_COMMIT.tar.gz \
     && mkdir -p kinematics-dynamics-$KINEMATICS_DYNAMICS_COMMIT/build && cd kinematics-dynamics-$KINEMATICS_DYNAMICS_COMMIT/build \
     && cmake .. -DCREATE_PYTHON=ON -DCREATE_BINDINGS_PYTHON=ON -DCMAKE_INSTALL_PYTHONDIR=/usr/local/lib/python3.10/dist-packages \
-    && make -j$(nproc) && make install && cd ../.. && rm $KINEMATICS_DYNAMICS_COMMIT.zip \
+    && make -j$(nproc) && make install && cd ../.. && rm $KINEMATICS_DYNAMICS_COMMIT.tar.gz \
     \
     && ldconfig

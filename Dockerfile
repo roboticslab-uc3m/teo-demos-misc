@@ -59,4 +59,6 @@ RUN apt update \
     && unzip $KINEMATICS_DYNAMICS_COMMIT.zip \
     && mkdir -p kinematics-dynamics-$KINEMATICS_DYNAMICS_COMMIT/build && cd kinematics-dynamics-$KINEMATICS_DYNAMICS_COMMIT/build \
     && cmake .. -DCREATE_PYTHON=ON -DCREATE_BINDINGS_PYTHON=ON -DCMAKE_INSTALL_PYTHONDIR=/usr/local/lib/python3.10/dist-packages \
-    && make -j$(nproc) && make install && cd ../.. && rm $KINEMATICS_DYNAMICS_COMMIT.zip
+    && make -j$(nproc) && make install && cd ../.. && rm $KINEMATICS_DYNAMICS_COMMIT.zip \
+    \
+    && ldconfig
